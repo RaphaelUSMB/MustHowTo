@@ -1,0 +1,28 @@
+executable=/usr/bin/apptainer
+universe=vanilla
+
+arguments=exec --bind /home/<your-username>/ <abs-path-to-sif-image> python <abs-path-to-python-script>
+output=results.output.$(Process)
+error=results.error.$(Process)
+log=results.log
+
+# ressources requests
+request_cpus = 1
+request_memory = 1GB
+request_disk = 0
+request_gpus = 1
++wantGpuType = "a100"
+
+# To receive a notification e-mail
+#notification=never
+notification=complete
+notify_user=<your_email>
+
+# To use your environment in the job
+getenv = True
+
+# To give some environment variables to the job
+# environment = FOO=FOO
+
+# To specify queue NUMBER with the number of jobs to be launched simultaneously
+queue

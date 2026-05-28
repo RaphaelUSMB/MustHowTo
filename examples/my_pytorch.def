@@ -1,0 +1,18 @@
+Bootstrap: docker
+From: pytorch/pytorch:2.2.2-cuda12.1-cudnn8-runtime
+
+%post
+    apt-get update && apt-get install -y --no-install-recommends \
+        build-essential \
+        git \
+        && update-ca-certificates \
+        && rm -rf /var/lib/apt/lists/*
+
+    pip install --no-cache-dir \
+        torch-geometric \
+        numpy \
+        pandas \
+        scikit-learn
+
+%environment
+    export PYTHONUNBUFFERED=1
